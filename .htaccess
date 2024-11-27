@@ -1,10 +1,15 @@
 <IfModule mod_negotiation.c>
   Options -MultiViews
 </IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /endorse-ex-admin/
+
+  # Prevent access to specific files
   RewriteRule ^index\.html$ - [L]
+
+  # Redirect all requests to index.html if the requested file or directory does not exist
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /endorse-ex-admin/index.html [L]
